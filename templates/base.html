@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valmiki</title>
+    <link rel="shortcut icon" type="image/png" href="{% static '/images/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static '/css/global.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</head>
+
+<body class="is-boxed has-animations">
+    <div class="body-wrap">
+        {% comment %} {% if 'success' %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %} {% endcomment %}
+        
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <h1 class="m-0">
+                            <a href="#" class="header-links">
+                                <img class="header-logo-image" src="{% static 'images/logo.svg' %}" alt="Logo">
+                                <p>valmiki</p>
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-inner">
+                        <div class="hero-copy">
+                            <h1 class="hero-title mt-0">Free AI Blog Writer: Create Unique blogs in few clicks</h1>
+                            <p class="hero-paragraph">Write Blogs for free with Valmiki</p>
+                            <div class="hero-cta">
+                                <a class="button button-primary" onClick="window.location='#generate'">Start Generating</a>
+                                {% comment %} <button class="button" data-toggle="modal" data-target="#exampleModal" >Get in touch</button> {% endcomment %}
+                            
+                                <details>
+                                    <summary>
+                                      <div class="button" onclick="openModal()">
+                                        Get in touch
+                                      </div>
+                                    </summary>
+                                    <div class="details-modal" id="details-modal">
+                                      <div class="modal-content modal-content-01">
+                                        <div class="modal-header modal-header-01">
+                                          <h5 class="modal-title" id="exampleModalLabel">Let us know your query!</h5>
+                                          <button type="button" class="close" onclick="closeModal()">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body modal-header-01">
+                                           <form action="{% url "userQuery" %}" method="post" >
+                                            {% csrf_token %}
+                                        
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                              <input type="text" class="form-control form-input-01" id="recipient-name" name="user_email">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="message-text" class="col-form-label">Message:</label>
+                                              <textarea class="form-control form-input-01" id="message-text" rows="6" name="user_query"> </textarea>
+                                            </div>
+                                            <div class="modal-footer modal-header-01">
+                                              {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> {% endcomment %}
+                                              <input class="button button-primary" type="submit" value="Send Message">
+                                            </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </details>
+                            </div>
+                            
+                        </div>
+                        <div class="hero-figure anime-element">
+                            <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
+                                <rect width="528" height="396" style="fill:transparent;" />
+                            </svg>
+                            <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
+                            <div class="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
+                            <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
+                            <div class="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
+                            <div class="hero-figure-box hero-figure-box-05"></div>
+                            <div class="hero-figure-box hero-figure-box-06"></div>
+                            <div class="hero-figure-box hero-figure-box-07"></div>
+                            <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
+                            <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
+                            <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {% comment %} <section class="features section">
+                <div class="container">
+                    <div class="features-inner section-inner has-bottom-divider">
+                        <div class="features-wrap">
+                            <!-- Features section content -->
+                            {% for feature in features %}
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <img src="{% static feature.icon %}" alt="{{ feature.name }}">
+                                    </div>
+                                    <h4 class="feature-title mt-24">{{ feature.title }}</h4>
+                                    <p class="text-sm mb-0">{{ feature.description }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section> {% endcomment %}
+
+            <section class="blog" id="generate">
+                <div class="container">
+                    <div class="blog-header text-center">Generate your Blog here!</div>
+                    <form action="{% url "generateBlog" %}" method="post" class="form-container-01" id="form-blog">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col custom-cols text-left">
+                                <label for="blogTitleTextarea" class="form-label">Enter your Blog Title</label>
+                                <textarea class="form-control" name="blog_title" id="blogTitleTextarea" rows="3">{% if blog %}{{ blog.blog_title }}{% endif %}</textarea>
+                                <label for="type_select" class="form-label">Select Type</label>
+                                <select class="form-select type_select" aria-label="Default select example" id="type_select" name="type_select">
+                                    <option selected>{% if blog %}{{ blog.blog_type }}{% else %}Professional{% endif %}</option>
+                                    <option value="informal">Informal</option>
+                                    <option value="hypocritical">Hypocritical</option>
+                                    <option value="optimistic">Optimistic</option>
+                                    <option value="sad">Sad</option>
+                                    <option value="joyful">Joyful</option>
+                                </select>
+                                <div class="hero-cta">
+                                    <a class="button" href="/">Clear</a>
+                                    <input class="button button-primary" type="submit" value="Generate">
+                                </div>
+                            </div>
+                            <div class="col custom-cols text-left">
+                                <div class="like-dislike-button">
+                                    <label for="blogContentTextarea" class="form-label">Output</label>
+                                    <div class="like-dislike-button-inner">
+                                        <img src="{% static "images/like.svg" %}" alt="" srcset="" class="like-button" data-blog-title="{{ blog.blog_title }}">
+                                        {% comment %} <img src="{% static "images/dislike.svg" %}" alt="" srcset="" class="dislike-button" data-blog-title="{{ blog.blog_title }}"> {% endcomment %}
+                                    </div>
+                                </div>
+                                <textarea class="form-control" name="blog_content" id="blogContentTextarea" rows="8">{% if blog %}{{ blog.blog_content }}{% endif %}</textarea>
+                            </div>
+                        </div>
+                        {% comment %} <input type="submit" value="Submit"> {% endcomment %}
+                    </form>
+                </div>
+            </section>
+
+            <section class="about-section-01 section">
+                <div class="container inner-container">
+                    <div class="img-container"><img src="{% static "images/valmiki.png" %}" alt="" srcset=""></div>
+                    <div class="content">
+                        <h4>An AI Blog Writer to Save Your Time and Money</h4>
+                        <p>Unlock the potential of seamless content creation with Valmiki, your AI-powered Full Blog Writer. In a few clicks, input your topic, and witness Valmiki craft an entire blog for you. Edit and refine with ease or hit publish instantly. Valmiki's intuitive interface and advanced algorithms redefine the art of generating high-quality content, providing a user-friendly experience that revolutionizes the way you approach blogging. Elevate your writing journey with Valmiki, where creativity meets convenience.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section-01 section">
+                <div class="container inner-container">
+                    <div class="content">
+                        <h4>How to Use the AI Blog Writer from Valmiki</h4>
+                        <p>
+                        <ol class="alternating-colors">
+                            <li>
+                                <span>1</span>
+                                <p>Select the title for your blog.</p>
+                            </li>
+                            <li>
+                                <span>2</span>
+                                <p>Fill in all the prompts, including title and the type of the blog you want to
+                                    generate.</p>
+                            </li>
+                            <li>
+                                <span>3</span>
+                                <p>Click on geneate button to generate your blog.</p>
+                            </li>
+                        </ol>
+                        </p>
+                    </div>
+                    <div class="img-container"><img src="{% static "images/valmiki.png" %}" alt="" srcset=""></div>
+
+                </div>
+            </section>
+
+            <section class="features section">
+                <div class="container">
+                    <div class="features-inner section-inner has-bottom-divider">
+                        <div class="features-wrap">
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <img src="{% static 'images/feature-icon-01.svg' %}" alt="Feature 01">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Topic-Prompted Generation</h4>
+                                    <p class="text-sm mb-0">Valmiki simplifies content creation by generating entire blog posts based on your specified topic. Input your subject, and let Valmiki do the heavy lifting, ensuring a quick and efficient starting point for your writing.</p>
+                                </div>
+                            </div>
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <img src="{% static 'images/feature-icon-02.svg' %}" alt="Feature 02">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Tailored Content Structure</h4>
+                                    <p class="text-sm mb-0">Valmiki's AI algorithms not only generate content but also structure it intelligently. Enjoy cohesive and organized blog posts that flow seamlessly, saving you time and effort in crafting a well-organized narrative.</p>
+                                </div>
+                            </div>
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <img src="{% static 'images/feature-icon-03.svg' %}" alt="Feature 03">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Direct Integration Support</h4>
+                                    <p class="text-sm mb-0">Valmiki focuses on efficient blog creation without the need for additional steps. Once your blog is generated, easily integrate it with popular platforms or content management systems. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta section">
+                <div class="container inner-container-lang">
+                    <div class="cta-inner-01">
+                        <div class="img-container"><img src="{% static "images/lang/django.png" %}" alt="" srcset="">
+                        </div>
+                    </div>
+
+                    <div class="cta-inner-01 ">
+                        <div class="img-container"><img src="{% static "images/lang/python.png" %}" alt="" srcset="">
+                        </div>
+                    </div>
+
+                    <div class="cta-inner-01">
+                        <div class="img-container"><img src="{% static "images/lang/mongo.png" %}" alt="" srcset="">
+                        </div>
+                    </div>
+
+                    <div class="cta-inner-01">
+                        <div class="img-container"><img src="{% static "images/lang/huggingface.png" %}" alt=""
+                                srcset=""></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-inner">
+                    <div class="brand footer-brand">
+                        <a href="#">
+                            <img class="header-logo-image" src="{% static 'images/logo.svg' %}" alt="Logo">
+                        </a>
+                    </div>
+                    <ul class="footer-links list-reset">
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                        <li>
+                            <a href="#">About us</a>
+                        </li>
+                        <li>
+                            <a href="#">FAQ's</a>
+                        </li>
+                        <li>
+                            <a href="#">Support</a>
+                        </li>
+                    </ul>
+                    <ul class="footer-social-links list-reset">
+                        <li>
+                            <a href="#">
+                                <span class="screen-reader-text">Facebook</span>
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.023 16L6 9H3V6h3V4c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V6H13l-1 3H9.28v7H6.023z"
+                                        fill="#0270D7" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="screen-reader-text">Twitter</span>
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z"
+                                        fill="#0270D7" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="screen-reader-text">Google</span>
+                                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7.9 7v2.4H12c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C11.5 1.7 9.9 1 8 1 4.1 1 1 4.1 1 8s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H7.9z"
+                                        fill="#0270D7" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="footer-copyright">&copy; 2023 Sanjana Dubey, all rights reserved</div>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+
+    <!-- Add your JS scripts or links -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Attach a submit event listener to the form
+            $('#form-blog').submit(function(e) {
+                // Prevent the default form submission
+                e.preventDefault();
+
+                // Make an AJAX request to the generateBlog view
+                $.ajax({
+                    type: 'POST',
+                    url: 'bloggenerate/',
+                    data: $(this).serialize(),
+                    success: function(data) {
+                        // Update the URL without reloading the page
+                        window.history.pushState(null, null, data.url);
+
+                        // Optionally, you can update the page content or perform other actions
+                        $('#blogContentTextarea').val(data.generated_content);
+                    },
+                    error: function() {
+                        console.log('Error in AJAX request');
+                    }
+                });
+            });
+        }); 
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateBlogForm = document.getElementById('form-blog');
+            generateBlogForm.addEventListener('submit', function (event) {
+                // Additional actions when the form is submitted, if any
+                const likeButtons = document.querySelectorAll('.like-button');
+                const dislikeButtons = document.querySelectorAll('.dislike-button');
+          
+                function handleButtonClick(button, isLike) {
+                    const blogTitleTextarea = document.getElementById('blogTitleTextarea');
+                    console.log(isLike)
+                    const blogTitleValue = blogTitleTextarea.value;
+                    let url = `/update-like-dislike/${blogTitleValue}/`;
+          
+                    // Send AJAX request
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}',
+                        },
+                        body: JSON.stringify({ is_like: isLike }),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);  // Handle the response as needed
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+          
+                likeButtons.forEach(button => {
+                    button.addEventListener('click', () => handleButtonClick(button, true));
+                });
+          
+                dislikeButtons.forEach(button => {
+                    button.addEventListener('click', () => handleButtonClick(button, false));
+                });
+            });
+          });       
+        
+    </script>
+
+</body>
+
+</html>

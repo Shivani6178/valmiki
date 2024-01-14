@@ -1,0 +1,107 @@
+.blog{
+    position: relative;
+	overflow: hidden;
+    height: 580px;
+    margin: 3rem 0;
+
+    .container{
+        position: relative;
+        background: color(bg, 1);
+        height: inherit;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        font-size: 30px;
+        // border: 2px solid red;
+        z-index: 100;
+        padding:0.8rem 0.5rem;
+
+        .blog-header{
+            padding: 1.8rem 0;
+            font-weight: 700;
+        }
+
+        .form-container-01{
+            .custom-cols{
+                padding: 1rem 2rem;
+                margin: 1rem;
+                background-color: #1D2026;
+                box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+                border-radius: 9px;
+                // border: 2px solid red;
+                label{
+                    font-size: 20px;
+                }
+                textarea{
+                    margin: 1rem 0;
+                    border: 1px solid rgb(41, 41, 41);
+                    background-color: #15181D;
+                    color: #fff;
+                }
+                textarea::-webkit-scrollbar {
+                    width: 12px;
+                    /* width of the entire scrollbar */
+                }
+                
+                textarea::-webkit-scrollbar-track {
+                    background: #1F2229;
+                    /* color of the tracking area */
+                }
+                
+                textarea::-webkit-scrollbar-thumb {
+                    background-color: #067AE6;
+                    /* color of the scroll thumb */
+                    border-radius: 20px;
+                    /* roundness of the scroll thumb */
+                    border: 3px solid rgb(44, 44, 44);
+                    /* creates padding around scroll thumb */
+                }
+
+                .type_select{
+                    margin: 0 0 1rem 0;
+                    border: 1px solid rgb(41, 41, 41);
+                    background-color: #15181D;
+                    color: #fff;
+                    padding: 0.5rem;
+                    border-radius: 5px;
+                }
+
+                .like-dislike-button{
+                    display: flex;
+                    justify-content: space-between;
+
+                    .like-dislike-button-inner{
+                        display: flex;
+                        
+                        img{
+                            padding: 0 0.3rem;
+                            cursor: pointer;
+                        }
+                        .like-button:hover, .dislike-button:hover{
+                            filter: brightness(0.8);
+                        }
+                    }
+                }
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            right: 98px;
+            top: -117px;
+            width: 160px;
+            height: 187px;
+            background-image: url('../images/cta-illustration.svg');
+            background-repeat: no-repeat;
+        }
+        > * {
+            position: relative; /* To display elements above hero illustrations */
+        }
+    }
+	
+
+	
+}
